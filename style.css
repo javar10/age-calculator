@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('assets/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-BoldItalic';
+    src: url('assets/fonts/Poppins-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraBold';
+    src: url('assets/fonts/Poppins-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-ExtraBoldItalic';
+    src: url('assets/fonts/Poppins-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Italic';
+    src: url('assets/fonts/Poppins-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Regular';
+    src: url('assets/fonts/Poppins-Regular.ttf');
+}
+
+:root {
+    --primary-purple: hsl(259, 100%, 65%);
+    --light-red: hsl(0, 100%, 67%);
+    --white: hsl(0, 0%, 100%);
+    --off-white: hsl(0, 0%, 94%);
+    --light-grey: hsl(0, 0%, 86%);
+    --smokey-grey: hsl(0, 1%, 44%);
+    --off-black: hsl(0, 0%, 8%);
+
+    --inputs-font-size: 32px;
+
+    --font-bold: 'Poppins-Bold', sans-serif;
+    --font-bold-italic: 'Poppins-BoldItalic', sans-serif;
+    --font-extra-bold: 'Poppins-ExtraBold', sans-serif;
+    --font-extra-bold-italic: 'Poppins-ExtraBoldItalic', sans-serif;
+    --font-italic: 'Poppins-Italic', sans-serif;
+    --font-regular: 'Poppins-Regular', sans-serif;
+}
+
+body {
+    font-family: var(--font-regular);
+}
