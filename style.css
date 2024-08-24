@@ -48,5 +48,10 @@
 }
 
 body {
-    font-family: var(--font-regular);
+    background-color: var(--off-white);
+}
+
+.main {
+    background-color: var(--white);
+    
 }
