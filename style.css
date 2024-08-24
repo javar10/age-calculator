@@ -83,18 +83,25 @@ body, html{
     font-family: var(--font-bold);
     font-size: xx-small;
     color: var(--smokey-grey);
-    margin-bottom: 5px;
+    letter-spacing: 2px;
 }
 
 .form_input {
     font-family: var(--font-bold);
     font-size: 1.5rem;
-    color: var(--light-grey);
+    /* color: var(--light-grey); */
     width: 75%;
     padding: .5rem 0 .5rem 1rem;
     border-radius: 5px;
-    border: 1px var(--light-grey) solid;
-    margin-top: .5rem;
+    border: 1px solid var(--light-grey);
+    margin-top: .25rem;
+}
+
+.form_input:focus {
+    border-color: var(--primary-purple);
+    outline: none;
+    caret-color: var(--primary-purple);
+    cursor: pointer;
 }
 
 .form_button_div {
@@ -114,9 +121,15 @@ body, html{
     background-color: var(--primary-purple);
 }
 
+.form_submit_btn:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
 .result_div {
     font-family: var(--font-extra-bold-italic);
-    font-size: 3rem
+    font-size: 3rem;
+    line-height: 1.25;
 }
 
 .result_span {
@@ -124,7 +137,9 @@ body, html{
 }
 
 .attribution {
-    margin-top: 5vh;
-    justify-self: flex-start;
-    align-self: flex-start;
+    margin: 25px auto 0 auto;
+    max-width: 75%;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-regular);
 }
