@@ -47,11 +47,84 @@
     --font-regular: 'Poppins-Regular', sans-serif;
 }
 
-body {
+body, html{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
     background-color: var(--off-white);
+    flex-direction: column;
 }
 
 .main {
     background-color: var(--white);
+    padding: 25px;
+    border-radius: 15px 15px 150px 15px;
+    width: 75%;
+    max-width: 800px; /* Optional: limit the maximum width */
+    height: auto; /* Ensure the height adjusts based on content */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+
+.form_inputs_group_div {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0;
     
+}
+
+.form_input_div {
+   width: 25%;
+}
+
+.form_label {
+    font-family: var(--font-bold);
+    font-size: xx-small;
+    color: var(--smokey-grey);
+    margin-bottom: 5px;
+}
+
+.form_input {
+    font-family: var(--font-bold);
+    font-size: 1.5rem;
+    color: var(--light-grey);
+    width: 75%;
+    padding: .5rem 0 .5rem 1rem;
+    border-radius: 5px;
+    border: 1px var(--light-grey) solid;
+    margin-top: .5rem;
+}
+
+.form_button_div {
+    display: flex;
+    align-items: center;
+}
+
+.horizontal_line {
+    border-bottom: 1px var(--light-grey) solid;
+    width: 100%;
+}
+
+.form_submit_btn {
+    border-radius: 50px;
+    border: none;
+    padding: 12px;
+    background-color: var(--primary-purple);
+}
+
+.result_div {
+    font-family: var(--font-extra-bold-italic);
+    font-size: 3rem
+}
+
+.result_span {
+    color: var(--primary-purple)
+}
+
+.attribution {
+    margin-top: 5vh;
+    justify-self: flex-start;
+    align-self: flex-start;
 }
