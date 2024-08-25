@@ -84,6 +84,13 @@ body, html{
     font-size: xx-small;
     color: var(--smokey-grey);
     letter-spacing: 2px;
+    
+}
+
+.form_input_error {
+    font-family: var(--font-italic);
+    font-size: xx-small;
+    color: var(--light-red);
 }
 
 .form_input {

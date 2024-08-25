@@ -5,20 +5,110 @@ const submitBtn = document.getElementById('submitBtn');
 const daysResult = document.getElementById('days_result_span');
 const monthsResult = document.getElementById('months_result_span');
 const yearsResult = document.getElementById('years_result_span');
+const allInputs = document.querySelectorAll('.form_input');
+const allLabels = document.querySelectorAll('.form_label');
+const allErrorLabels = document.querySelectorAll('.form_input_error');
+const allResultSpans = document.querySelectorAll('.result_span');
 
-const onSubmit = (e) => {
+const setDefaultStyles = () => {
+    allInputs.forEach((input, index) => {
+        allLabels[index].style.color = 'var(--smokey-grey)';
+        allErrorLabels[index].innerText = '';
+        input.style.borderColor = 'var(--light-grey)';
+    });
+    allResultSpans.forEach((input, index) => {
+        input.innerText = '- -';
+    })
+}
+
+const validateForm = (e) => {
+    let hasErrors = false;
     e.preventDefault();
-    const inputDate = new Date(`${monthInput.value}/${dayInput.value}/${yearInput.value}`);
-    const inputDay = inputDate.getDate();
-    const inputMonth = inputDate.getMonth();
-    const inputYear = inputDate.getFullYear();
-    console.log({inputDay, inputMonth, inputYear, inputDate})
+    setDefaultStyles();
+    const inputDay = parseInt(dayInput.value);
+    const inputMonth = parseInt(monthInput.value);
+    const inputYear = parseInt(yearInput.value);
+    console.log({ inputDay, inputMonth, inputYear })
 
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
     const currentDay = currentDate.getDate();
-    console.log({currentDate, currentYear, currentMonth, currentDay});
+    console.log({ currentDate, currentYear, currentMonth, currentDay });
+
+    allInputs.forEach((input, index) => {
+        if (!input.value) {
+            allLabels[index].style.color = 'var(--light-red)';
+            allErrorLabels[index].innerText = 'This field is required';
+            allInputs[index].style.borderColor = 'var(--light-red)';
+            hasErrors = true;
+        }
+    })
+
+    if (inputYear > currentYear) {
+        document.getElementById('form_label_year').style.color = 'var(--light-red)';
+        document.getElementById('form_error_year').innerText = 'Must be in the past';
+        yearInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    } else if (inputYear === currentYear && inputMonth > currentMonth) {
+        document.getElementById('form_label_year').style.color = 'var(--light-red)';
+        document.getElementById('form_error_year').innerText = 'Must be in the past';
+        yearInput.style.borderColor = 'var(--light-red)';
+        document.getElementById('form_label_month').style.color = 'var(--light-red)';
+        document.getElementById('form_error_month').innerText = 'Must be in the past';
+        monthInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    } else if (inputYear === currentYear && inputMonth === currentMonth && inputDay > currentDay) {
+        document.getElementById('form_label_year').style.color = 'var(--light-red)';
+        document.getElementById('form_error_year').innerText = 'Must be in the past';
+        yearInput.style.borderColor = 'var(--light-red)';
+        document.getElementById('form_label_month').style.color = 'var(--light-red)';
+        document.getElementById('form_error_month').innerText = 'Must be in the past';
+        monthInput.style.borderColor = 'var(--light-red)';
+        document.getElementById('form_label_day').style.color = 'var(--light-red)';
+        document.getElementById('form_error_day').innerText = 'Must be in the past';
+        dayInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    }
+
+    if (inputMonth > 12 || inputMonth < 1) {
+        document.getElementById('form_label_month').style.color = 'var(--light-red)';
+        document.getElementById('form_error_month').innerText = 'Must be a valid month';
+        monthInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    }
+
+    const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (inputYear % 4 === 0) {
+        daysPerMonth[1] = 29;
+    }
+    for (let i = 0; i < 12; i++) {
+        console.log(i)
+        if (inputMonth - 1 === i) {
+            console.log(inputMonth - 1)
+            if (inputDay > daysPerMonth[i]) {
+                document.getElementById('form_label_day').style.color = 'var(--light-red)';
+                document.getElementById('form_error_day').innerText = 'Must be a valid day';
+                dayInput.style.borderColor = 'var(--light-red)';
+                hasErrors = true;
+            }
+        }
+    }
+
+    if (!hasErrors) calculateAge();
+}
+
+const calculateAge = () => {
+    const inputDay = parseInt(dayInput.value);
+    const inputMonth = parseInt(monthInput.value) - 1;
+    const inputYear = parseInt(yearInput.value);
+    console.log({ inputDay, inputMonth, inputYear })
+
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+    console.log({ currentDate, currentYear, currentMonth, currentDay });
 
     let yearsOld = 0;
     const yearDiff = currentYear - inputYear;
@@ -27,13 +117,13 @@ const onSubmit = (e) => {
     } else if (inputMonth > currentMonth) {
         yearsOld = yearDiff - 1;
     } else {
-        inputDay < currentDay ? yearsOld = yearDiff : yearsOld = yearDiff - 1;
+        inputDay > currentDay ? yearsOld = yearDiff - 1 : yearsOld = yearDiff;
     }
     yearsResult.innerText = yearsOld;
 
     let monthsOld = 0;
     if (inputMonth < currentMonth) {
-        monthsOld = currentMonth - inputMonth;    
+        monthsOld = currentMonth - inputMonth;
     } else if (inputMonth > currentMonth) {
         monthsOld = 12 - inputMonth + currentMonth;
     } else {
@@ -45,10 +135,4 @@ const onSubmit = (e) => {
     daysResult.innerText = daysOld;
 }
 
-// TODO: Validation
-    // const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    // if (currentYear % 4 === 0) {
-    //     daysPerMonth[1] = 29;
-    // }
-
-submitBtn.addEventListener('click', onSubmit);
+submitBtn.addEventListener('click', validateForm);
