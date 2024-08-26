@@ -62,7 +62,7 @@ body, html{
     padding: 25px;
     border-radius: 15px 15px 150px 15px;
     width: 75%;
-    max-width: 800px; 
+    /* max-width: 800px;  */
     height: auto; 
     box-sizing: border-box; 
 }

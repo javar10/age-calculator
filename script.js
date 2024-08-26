@@ -25,7 +25,7 @@ const validateForm = (e) => {
     let hasErrors = false;
     e.preventDefault();
     setDefaultStyles();
-    
+
     const inputDay = parseInt(dayInput.value);
     const inputMonth = parseInt(monthInput.value);
     const inputYear = parseInt(yearInput.value);
@@ -92,19 +92,25 @@ const validateForm = (e) => {
         hasErrors = true;
     }
 
-    const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    if (inputYear % 4 === 0) {
-        daysPerMonth[1] = 29;
-    }
-    for (let i = 0; i < 12; i++) {
-        console.log(i)
-        if (inputMonth - 1 === i) {
-            console.log(inputMonth - 1)
-            if (inputDay > daysPerMonth[i] || inputDay < 1) {
-                document.getElementById('form_label_day').style.color = 'var(--light-red)';
-                document.getElementById('form_error_day').innerText = 'Must be a valid day';
-                dayInput.style.borderColor = 'var(--light-red)';
-                hasErrors = true;
+    if (inputDay > 31 || inputDay < 1) {
+        document.getElementById('form_label_day').style.color = 'var(--light-red)';
+        document.getElementById('form_error_day').innerText = 'Must be a valid day';
+        dayInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    } else {
+        const daysPerMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (inputYear % 4 === 0) {
+            daysPerMonth[1] = 29;
+        }
+        for (let i = 0; i < 12; i++) {
+            if (inputMonth - 1 === i) {
+                console.log(inputMonth - 1)
+                if (inputDay > daysPerMonth[i]) {
+                    document.getElementById('form_label_day').style.color = 'var(--light-red)';
+                    document.getElementById('form_error_day').innerText = 'Must be a valid date';
+                    dayInput.style.borderColor = 'var(--light-red)';
+                    hasErrors = true;
+                }
             }
         }
     }
