@@ -51,8 +51,8 @@ body, html{
     height: 100%;
     margin: 0;
     display: flex;
-    align-items: center; /* Vertically center */
-    justify-content: center; /* Horizontally center */
+    align-items: center;
+    justify-content: center;
     background-color: var(--off-white);
     flex-direction: column;
 }
@@ -62,21 +62,20 @@ body, html{
     padding: 25px;
     border-radius: 15px 15px 150px 15px;
     width: 75%;
-    max-width: 800px; /* Optional: limit the maximum width */
-    height: auto; /* Ensure the height adjusts based on content */
-    box-sizing: border-box; /* Ensure padding is included in the width */
+    max-width: 800px; 
+    height: auto; 
+    box-sizing: border-box; 
 }
-
 
 .form_inputs_group_div {
     display: flex;
     justify-content: flex-start;
     gap: 0;
-    
 }
 
 .form_input_div {
    width: 25%;
+   margin-right: 10px;
 }
 
 .form_label {
@@ -84,7 +83,6 @@ body, html{
     font-size: xx-small;
     color: var(--smokey-grey);
     letter-spacing: 2px;
-    
 }
 
 .form_input_error {
@@ -96,9 +94,8 @@ body, html{
 .form_input {
     font-family: var(--font-bold);
     font-size: 1.5rem;
-    /* color: var(--light-grey); */
     width: 75%;
-    padding: .5rem 0 .5rem 1rem;
+    padding: .4rem 0 .4rem 1rem;
     border-radius: 5px;
     border: 1px solid var(--light-grey);
     margin-top: .25rem;

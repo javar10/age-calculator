@@ -25,6 +25,7 @@ const validateForm = (e) => {
     let hasErrors = false;
     e.preventDefault();
     setDefaultStyles();
+    
     const inputDay = parseInt(dayInput.value);
     const inputMonth = parseInt(monthInput.value);
     const inputYear = parseInt(yearInput.value);
@@ -40,6 +41,12 @@ const validateForm = (e) => {
         if (!input.value) {
             allLabels[index].style.color = 'var(--light-red)';
             allErrorLabels[index].innerText = 'This field is required';
+            allInputs[index].style.borderColor = 'var(--light-red)';
+            hasErrors = true;
+        }
+        if (isNaN(input.value)) {
+            allLabels[index].style.color = 'var(--light-red)';
+            allErrorLabels[index].innerText = 'Must be a number';
             allInputs[index].style.borderColor = 'var(--light-red)';
             hasErrors = true;
         }
@@ -71,6 +78,13 @@ const validateForm = (e) => {
         hasErrors = true;
     }
 
+    if (inputYear < 1) {
+        document.getElementById('form_label_year').style.color = 'var(--light-red)';
+        document.getElementById('form_error_year').innerText = 'Must be a valid year';
+        yearInput.style.borderColor = 'var(--light-red)';
+        hasErrors = true;
+    }
+
     if (inputMonth > 12 || inputMonth < 1) {
         document.getElementById('form_label_month').style.color = 'var(--light-red)';
         document.getElementById('form_error_month').innerText = 'Must be a valid month';
@@ -86,7 +100,7 @@ const validateForm = (e) => {
         console.log(i)
         if (inputMonth - 1 === i) {
             console.log(inputMonth - 1)
-            if (inputDay > daysPerMonth[i]) {
+            if (inputDay > daysPerMonth[i] || inputDay < 1) {
                 document.getElementById('form_label_day').style.color = 'var(--light-red)';
                 document.getElementById('form_error_day').innerText = 'Must be a valid day';
                 dayInput.style.borderColor = 'var(--light-red)';
