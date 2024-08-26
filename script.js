@@ -16,7 +16,7 @@ const setDefaultStyles = () => {
         allErrorLabels[index].innerText = '';
         input.style.borderColor = 'var(--light-grey)';
     });
-    allResultSpans.forEach((input, index) => {
+    allResultSpans.forEach((input) => {
         input.innerText = '- -';
     })
 }
@@ -150,3 +150,4 @@ const calculateAge = () => {
 }
 
 submitBtn.addEventListener('click', validateForm);
+allInputs.forEach(input => input.addEventListener('focus', setDefaultStyles));
